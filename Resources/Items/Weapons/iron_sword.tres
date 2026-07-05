@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Items/ItemResource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "iron_sword"
+display_name = "Espada de Hierro"
+description = "Una espada básica de hierro forjado"
+item_type = 0
+rarity = 0
+stackable = false
+max_stack = 1
+weight = 3.0
+sell_price = 10
+buy_price = 25
+equip_slot = 1
+level_requirement = 1
+class_restriction = []
+stats_bonus = {
+"attack": 5
+}
+special_effect = ""
+set_id = ""
+heal_amount = 0
+mana_amount = 0
+buff_id = ""
+buff_duration = 0.0
+cooldown = 0.0

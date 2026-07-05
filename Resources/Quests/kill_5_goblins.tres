@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cb4b6673ivmgi"]
+
+[ext_resource type="Script" path="res://Resources/Quests/QuestResource.gd" id="1_qjrhy"]
+
+[resource]
+script = ExtResource("1_qjrhy")
+id = "kill_5_goblins"
+display_name = "Cacería de Goblins"
+description = "Elimina 5 goblins en el bosque cercano."
+lore_text = "Los goblins han estado saqueando los caminos. Es hora de limpiar la zona."
+quest_type = 1
+level_requirement = 1
+objectives = [{
+"type": "kill",
+"target_id": "goblin",
+"description": "Goblins eliminados",
+"current": 0,
+"required_amount": 5
+}]
+xp_reward = 150
+gold_reward = 50
+item_rewards = [{"item_id": "health_potion_small", "amount": 2}]
+npc_id_giver = "aldric_merchant"
+npc_id_completer = "aldric_merchant"

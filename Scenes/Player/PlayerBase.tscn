@@ -1,0 +1,299 @@
+[gd_scene load_steps=33 format=3 uid="uid://player_base"]
+
+[ext_resource type="Script" id="1" path="res://Scripts/Player/PlayerBase.gd"]
+[ext_resource type="Texture2D" id="2" path="res://Assets/Sprites/Player/warrior/warrior_spritesheet.png"]
+[ext_resource type="Resource" id="3" path="res://Resources/Characters/warrior_resource.tres"]
+[ext_resource type="Script" id="4" path="res://Scripts/Combat/HealthComponent.gd"]
+[ext_resource type="Script" id="5" path="res://Scripts/Combat/StatsComponent.gd"]
+[ext_resource type="Script" id="6" path="res://Scripts/Combat/HitboxComponent.gd"]
+[ext_resource type="Script" id="7" path="res://Scripts/Combat/HurtboxComponent.gd"]
+[ext_resource type="Script" id="8" path="res://Scripts/Core/FSM.gd"]
+[ext_resource type="Script" id="9" path="res://Scripts/Player/States/IdleState.gd"]
+[ext_resource type="Script" id="10" path="res://Scripts/Player/States/WalkState.gd"]
+[ext_resource type="Script" id="11" path="res://Scripts/Player/States/AttackState.gd"]
+[ext_resource type="Script" id="12" path="res://Scripts/Player/States/DodgeState.gd"]
+[ext_resource type="Script" id="13" path="res://Scripts/Player/States/BlockState.gd"]
+[ext_resource type="Script" id="14" path="res://Scripts/Player/States/HurtState.gd"]
+[ext_resource type="Script" id="15" path="res://Scripts/Player/States/DeathState.gd"]
+[ext_resource type="Script" id="16" path="res://Scripts/Core/BaseComponent.gd"]
+[ext_resource type="Script" id="17" path="res://Scripts/Core/BaseEntity.gd"]
+[ext_resource type="Script" id="18" path="res://Scripts/Core/State.gd"]
+[ext_resource type="Script" id="19" path="res://Scripts/Core/Constants.gd"]
+[ext_resource type="Script" id="20" path="res://Scripts/Combat/DamageCalculator.gd"]
+[ext_resource type="Script" id="21" path="res://Scripts/Inventory/InventoryComponent.gd"]
+[ext_resource type="Script" id="22" path="res://Scripts/Inventory/EquipmentComponent.gd"]
+[ext_resource type="Script" id="23" path="res://Scripts/Combat/SkillComponent.gd"]
+[ext_resource type="Script" id="24" path="res://Scripts/Network/PlayerInputSync.gd"]
+[ext_resource type="Script" id="25" path="res://Scripts/Network/CombatSync.gd"]
+[ext_resource type="Script" id="26" path="res://Scripts/Player/PlayerInput.gd"]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 30.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 0.66
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083, 0.166, 0.25, 0.333, 0.416, 0.5, 0.583),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack_1"
+length = 0.5
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083, 0.166, 0.25, 0.333, 0.416),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack_2"
+length = 0.5
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083, 0.166, 0.25, 0.333, 0.416),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attack_3"
+length = 0.5
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083, 0.166, 0.25, 0.333, 0.416),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "dodge"
+length = 0.25
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "block"
+length = 0.25
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [25, 26]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "hurt"
+length = 0.25
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [26, 27]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "death"
+length = 0.75
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="AnimationLibrary" id=11]
+_data = {
+"attack_1": SubResource(4),
+"attack_2": SubResource(5),
+"attack_3": SubResource(6),
+"block": SubResource(8),
+"death": SubResource(10),
+"dodge": SubResource(7),
+"hurt": SubResource(9),
+"idle": SubResource(2),
+"walk": SubResource(3)
+}
+
+[sub_resource type="RectangleShape2D" id=12]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id=13]
+size = Vector2(18, 26)
+
+[node name="PlayerBase" type="CharacterBody2D"]
+script = ExtResource(1)
+entity_name = "Player"
+faction = 0
+character_resource = ExtResource(3)
+move_speed = 200.0
+stats = NodePath("StatsComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource(2)
+hframes = 7
+vframes = 4
+frame = 0
+scale = Vector2(0.25, 0.25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource(11)
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource(1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource(4)
+max_health = 150.0
+current = 150.0
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource(5)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource(6)
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource(12)
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource(7)
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource(13)
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource(8)
+
+[node name="IdleState" type="Node" parent="FSM"]
+script = ExtResource(9)
+
+[node name="WalkState" type="Node" parent="FSM"]
+script = ExtResource(10)
+
+[node name="AttackState" type="Node" parent="FSM"]
+script = ExtResource(11)
+
+[node name="DodgeState" type="Node" parent="FSM"]
+script = ExtResource(12)
+
+[node name="BlockState" type="Node" parent="FSM"]
+script = ExtResource(13)
+
+[node name="HurtState" type="Node" parent="FSM"]
+script = ExtResource(14)
+
+[node name="DeathState" type="Node" parent="FSM"]
+script = ExtResource(15)
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource(21)
+max_slots = 30
+
+[node name="EquipmentComponent" type="Node" parent="."]
+script = ExtResource(22)
+
+[node name="SkillComponent" type="Node" parent="."]
+script = ExtResource(23)
+
+[node name="PlayerInputSync" type="Node" parent="."]
+script = ExtResource(24)
+
+[node name="CombatSync" type="Node" parent="."]
+script = ExtResource(25)
+
+[node name="PlayerInput" type="Node" parent="."]
+script = ExtResource(26)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b5j2l6fr235db"]
+
+[ext_resource type="Script" path="res://Resources/Dialogues/DialogueResource.gd" id="1_qucr0"]
+
+[resource]
+script = ExtResource("1_qucr0")
+id = "choice_001"
+npc_id = "aldric_merchant"
+npc_display_name = "Aldric"
+node_type = 1
+text = "¿En qué puedo ayudarte?"
+options = [{"text": "Acepto la misión", "next_node": "intro_001"}, {"text": "Solo mirando", "next_node": "end_001"}]

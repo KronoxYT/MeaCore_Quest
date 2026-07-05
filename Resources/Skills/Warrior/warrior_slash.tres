@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SkillResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Skills/SkillResource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "warrior_slash"
+display_name = "Tajo del Guerrero"
+description = "Un poderoso tajo que inflige 150% de daño"
+skill_type = 0
+class_requirement = ""
+level_requirement = 1
+mana_cost = 0
+stamina_cost = 10
+cooldown = 3.0
+cast_time = 0.0
+base_damage = 15
+damage_type = 0
+target_type = 1
+range = 50.0
+radius = 0.0
+damage_scaling_stat = "attack"
+animation_name = "attack_1"
+vfx_scene = null
+sfx_stream = null

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmj6o7t0m6y2j"]
+
+[ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/HUD.tscn" id="2_hud"]
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+use_parent_material = true
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

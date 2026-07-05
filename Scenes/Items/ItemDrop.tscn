@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dclnh18mr2683"]
+
+[ext_resource type="Script" path="res://Scenes/Items/ItemDrop.gd" id="1_3ij5b"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Items/item_placeholder.tres" id="2_ry6x3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ceiws"]
+radius = 16.0
+
+[node name="ItemDrop" type="Area2D"]
+script = ExtResource("1_3ij5b")
+collision_layer = 4
+collision_mask = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ry6x3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ceiws")
+disabled = true

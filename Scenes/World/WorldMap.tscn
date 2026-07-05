@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c5t5ielouc6jx"]
+
+[ext_resource type="TileSet" path="res://Resources/World/grass_tileset.tres" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/PlayerBase.tscn" id="2"]
+[ext_resource type="Script" uid="uid://ugk1qkrjox51" path="res://Scripts/World/WorldMap.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dgkm47b1y3i8e" path="res://Scenes/Enemies/Goblin.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/GameHUD.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://clbsjiig63mac" path="res://Scenes/NPCs/NPCBase.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bjkvlogn7mksr" path="res://Scenes/World/Transitions/TransitionArea.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://dpgpqm4hf7vdt" path="res://Scenes/World/Transitions/SpawnPoint.tscn" id="8"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_an7de"]
+agent_radius = 12.0
+
+[node name="WorldMap" type="Node2D" unique_id=1042763166]
+script = ExtResource("3")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1430319961]
+tile_set = ExtResource("1")
+format = 2
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=625037075]
+navigation_polygon = SubResource("NavigationPolygon_an7de")
+
+[node name="PlayersContainer" type="Node2D" parent="." unique_id=291727872]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=725643610]
+spawn_path = NodePath("../PlayersContainer")
+
+[node name="PlayerBase" parent="." unique_id=294228741 instance=ExtResource("2")]
+position = Vector2(640, 360)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1777205081]
+position = Vector2(640, 360)
+
+[node name="Goblin1" parent="." unique_id=2099654944 instance=ExtResource("4")]
+position = Vector2(350, 250)
+
+[node name="Goblin2" parent="." unique_id=917046300 instance=ExtResource("4")]
+position = Vector2(900, 200)
+
+[node name="Goblin3" parent="." unique_id=1937222221 instance=ExtResource("4")]
+position = Vector2(400, 500)
+
+[node name="Goblin4" parent="." unique_id=310736520 instance=ExtResource("4")]
+position = Vector2(850, 480)
+
+[node name="Goblin5" parent="." unique_id=1716259991 instance=ExtResource("4")]
+position = Vector2(640, 100)
+
+[node name="GameHUD" parent="." unique_id=1114349421 instance=ExtResource("5")]
+
+[node name="NPC_OldMan" parent="." unique_id=957186196 instance=ExtResource("6")]
+position = Vector2(300, 600)
+
+[node name="TransitionToCave" parent="." unique_id=1401376231 instance=ExtResource("7")]
+position = Vector2(1200, 360)
+
+[node name="SpawnPointPlayer" parent="." unique_id=1143234637 instance=ExtResource("8")]
+position = Vector2(640, 360)

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c2ka2bck7xxjf"]
+
+[ext_resource type="Script" path="res://Resources/NPCs/NPCResource.gd" id="1_p8n5c"]
+[ext_resource type="Resource" path="res://Resources/Dialogues/dialogue_intro.tres" id="2_2d07f"]
+
+[resource]
+script = ExtResource("1_p8n5c")
+id = "aldric_merchant"
+display_name = "Aldric"
+title = "Mercader"
+description = "Un viejo mercader que conoce bien la región."
+faction = "neutral"
+has_routine = true
+work_position = Vector2(300, 600)
+rest_position = Vector2(300, 650)
+home_position = Vector2(300, 650)
+work_hours = Vector2i(6, 20)
+rest_hours = Vector2i(20, 22)
+starting_dialogue = ExtResource("2_2d07f")
+shop_inventory_id = "aldric_general"

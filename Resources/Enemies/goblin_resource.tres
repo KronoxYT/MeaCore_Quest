@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Enemies/EnemyResource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "goblin"
+display_name = "Goblin"
+description = "Criatura pequeña y astuta que ataca en grupos"
+enemy_type = "basic"
+base_hp = 40
+base_attack = 8
+base_defense = 2
+base_magic = 0
+base_speed = 100.0
+xp_reward = 15
+level_range = Vector2i(1, 10)
+patrol_radius = 80.0
+detection_radius = 120.0
+attack_radius = 35.0
+chase_radius = 200.0
+attack_cooldown = 1.2
+flee_hp_percent = 0.25
+aggro_group = true
+loot_table_id = "basic_goblin"
+guaranteed_drops = []
+gold_min = 3
+gold_max = 12

@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://hd2d_lighting_hud"]
+
+[ext_resource type="Script" path="res://Scenes/UI/GameHUD.gd" id="1_2sd7p"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/QuestTracker.tscn" id="2_gw0vj"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/SurvivalHUD.tscn" id="3_mw2ga"]
+
+[node name="GameHUD" type="CanvasLayer"]
+script = ExtResource("1_2sd7p")
+layer = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 11
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.234
+anchor_bottom = 0.253
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nivel 1"
+
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 150.0
+value = 150.0
+
+[node name="HPLabel" type="Label" parent="MarginContainer/VBoxContainer/HPBar"]
+layout_mode = 2
+text = "150 / 150"
+
+[node name="StaminaBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+
+[node name="XPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 0.0
+
+[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Oro: 0"
+
+[node name="QuestTracker" parent="." instance=ExtResource("2_gw0vj")]
+
+[node name="SurvivalHUD" parent="." instance=ExtResource("3_mw2ga")]
+
+[node name="NotificationContainer" type="Control" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NotificationLabel" type="Label" parent="NotificationContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+visible = false

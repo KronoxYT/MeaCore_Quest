@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://clbsjiig63mac"]
+
+[ext_resource type="Script" path="res://Scripts/NPCs/NPCBase.gd" id="1_4hkhn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqjjg"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmbnt"]
+radius = 40.0
+
+[node name="NPCBase" type="CharacterBody2D"]
+script = ExtResource("1_4hkhn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqjjg")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_gmbnt")
+
+[node name="IconIndicator" type="Sprite2D" parent="InteractionArea"]
+position = Vector2(0, -40)
+visible = false

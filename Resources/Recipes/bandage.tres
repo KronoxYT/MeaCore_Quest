@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RecipeResource" format=3]
+
+[ext_resource type="Script" path="res://Resources/Crafting/RecipeResource.gd" id="1_RecipeResource"]
+
+[resource]
+script = ExtResource("1_RecipeResource")
+id = "bandage"
+display_name = "Bandage"
+description = "A simple cloth bandage for minor wounds."
+category = 2
+required_skill_level = 1
+crafting_skill = "alchemy"
+craft_time = 1.5
+xp_reward = 5
+ingredients = [{"item_id": "cloth", "quantity": 2}]
+output_item_id = "bandage"
+output_quantity = 1

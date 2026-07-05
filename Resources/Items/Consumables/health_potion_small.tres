@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Items/ItemResource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "health_potion_small"
+display_name = "Poción de Vida Pequeña"
+description = "Recupera 50 puntos de vida"
+item_type = 3
+rarity = 0
+stackable = true
+max_stack = 10
+weight = 0.5
+sell_price = 5
+buy_price = 10
+equip_slot = 0
+level_requirement = 1
+class_restriction = []
+stats_bonus = {}
+special_effect = ""
+set_id = ""
+heal_amount = 50
+mana_amount = 0
+buff_id = ""
+buff_duration = 0.0
+cooldown = 0.0

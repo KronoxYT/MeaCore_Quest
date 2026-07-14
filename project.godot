@@ -14,12 +14,15 @@ config/name="MeaCore Quest"
 config/description="Un juego de rol y combate desarrollado en Godot 4"
 run/main_scene="res://Scenes/Menu_Principal.tscn"
 config/features=PackedStringArray("4.7")
+config/copyright="Keyler Tamayo ( KronoxYT ) MeaCore-Enterprise"
+config/license="GPLv3"
 
 [autoload]
 
 GameManager="*res://Autoload/GameManagerAlfa.gd"
 SoundManager="*res://Autoload/SoundManager.gd"
 DungeonManager="*res://Autoload/DungeonManager.gd"
+EventManager="*res://Autoload/EventManager.gd"
 
 [display]
 
@@ -182,6 +185,7 @@ use_mp_potion={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 textures/lossless_compression/force_png=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

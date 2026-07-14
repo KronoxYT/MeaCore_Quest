@@ -13,7 +13,7 @@ func enter(_prev_state = ""):
     p.velocity = Vector2.ZERO
     if playback:
         playback.travel("death")
-    EventManager.emit_event("player_died", p)
+    EventManager.emit_event("player_died", {"player_id": str(p.get_instance_id())})
 
 
 func physics_update(delta: float) -> void:

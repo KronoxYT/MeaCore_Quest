@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyResource" format=3]
 
-[ext_resource type="Script" path="res://Resources/Enemigos/EnemyResource.gd" id="1_EnemyResource"]
+[ext_resource type="Script" uid="uid://88ok853m1ahv" path="res://Recursos/Enemigos/EnemyResource.gd" id="1_EnemyResource"]
 [ext_resource type="Texture2D" path="res://Assets/Textures/Enemies/goblin_placeholder.tres" id="2_sprite"]
 
 [resource]

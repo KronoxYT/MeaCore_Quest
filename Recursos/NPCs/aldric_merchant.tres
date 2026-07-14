@@ -1,6 +1,6 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c2ka2bck7xxjf"]
+[gd_resource type="Resource" format=3 uid="uid://c2ka2bck7xxjf"]
 
-[ext_resource type="Script" path="res://Resources/NPCs/NPCResource.gd" id="1_p8n5c"]
+[ext_resource type="Script" uid="uid://bn2jbh2rgianc" path="res://Recursos/NPCs/NPCResource.gd" id="1_p8n5c"]
 [ext_resource type="Resource" path="res://Resources/Dialogues/dialogue_intro.tres" id="2_2d07f"]
 
 [resource]

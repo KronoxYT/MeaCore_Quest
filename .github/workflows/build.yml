@@ -14,11 +14,22 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [windows, linux, server, android]
+        platform: [windows, linux, android]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Java 17 (Required for Android Export)
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK (Required for Android Export)
+        if: matrix.platform == 'android'
+        uses: android-actions/setup-android@v3
 
       - name: Setup Godot
         uses: chickensoft/setup-godot@v2
@@ -37,10 +48,9 @@ jobs:
             linux)
               godot --headless --export-release "Linux Desktop" build/linux/MeaCoreQuest.x86_64
               ;;
-            server)
-              godot --headless --export-release "Linux Server Headless" build/server/MeaCoreQuest_Server.x86_64
-              ;;
             android)
+              # Godot busca las variables de entorno de Android SDK
+              export ANDROID_HOME=$ANDROID_SDK_ROOT
               godot --headless --export-release "Android" build/android/MeaCoreQuest.apk
               ;;
           esac

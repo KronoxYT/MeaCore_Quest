@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5t5ielouc6jx"]
 
-[ext_resource type="TileSet" path="res://Resources/World/grass_tileset.tres" id="1"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/PlayerBase.tscn" id="2"]
+[ext_resource type="TileSet" path="res://Recursos/World/grass_tileset.tres" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Jugador/PlayerBase.tscn" id="2"]
 [ext_resource type="Script" uid="uid://ugk1qkrjox51" path="res://Scripts/World/WorldMap.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://dgkm47b1y3i8e" path="res://Scenes/Enemies/Goblin.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/GameHUD.tscn" id="5"]

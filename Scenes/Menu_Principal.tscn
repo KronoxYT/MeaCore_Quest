@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://27lpi76bvswj"]
+
+[ext_resource type="Script" uid="uid://dbsjcc04vtll0" path="res://Scripts/Menu_Principal.gd" id="1_bh5t2"]
+
+[node name="Menu Principal" type="Control" unique_id=1574912276]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_bh5t2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=64825025]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+color = Color(0.5936905, 1.92523e-05, 0.43565315, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1870270373]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_right = 66.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Iniciar Aventura" type="Button" parent="VBoxContainer" unique_id=914739872]
+layout_mode = 2
+text = "Iniciar Aventura"
+
+[node name="Configuracion" type="Button" parent="VBoxContainer" unique_id=789331536]
+layout_mode = 2
+text = "Configuracion"
+
+[node name="Salir del Juego" type="Button" parent="VBoxContainer" unique_id=1564917559]
+layout_mode = 2
+text = "Salir del Juego"
+
+[connection signal="pressed" from="VBoxContainer/Iniciar Aventura" to="." method="_on_iniciar_aventura_pressed"]
+[connection signal="pressed" from="VBoxContainer/Configuracion" to="." method="_on_configuracion_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir del Juego" to="." method="_on_salir_del_juego_pressed"]

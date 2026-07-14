@@ -1,28 +1,28 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyResource" format=3]
 
-[ext_resource type="Script" path="res://Resources/Enemies/EnemyResource.gd" id="1"]
+[ext_resource type="Script" path="res://Resources/Enemigos/EnemyResource.gd" id="1_EnemyResource"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Enemies/goblin_placeholder.tres" id="2_sprite"]
 
 [resource]
-script = ExtResource("1")
-id = "goblin"
+script = ExtResource("1_EnemyResource")
+id = "goblin_basic"
 display_name = "Goblin"
-description = "Criatura pequeña y astuta que ataca en grupos"
+description = "A small, green, cowardly creature."
 enemy_type = "basic"
-base_hp = 40
-base_attack = 8
-base_defense = 2
-base_magic = 0
-base_speed = 100.0
-xp_reward = 15
-level_range = Vector2i(1, 10)
-patrol_radius = 80.0
-detection_radius = 120.0
-attack_radius = 35.0
-chase_radius = 200.0
-attack_cooldown = 1.2
-flee_hp_percent = 0.25
+base_hp = 50
+base_attack = 5
+base_defense = 3
+base_speed = 80.0
+xp_reward = 10
+level_range = Vector2i(1, 5)
+patrol_radius = 100.0
+detection_radius = 150.0
+attack_radius = 40.0
+chase_radius = 250.0
+attack_cooldown = 1.5
+flee_hp_percent = 0.2
 aggro_group = true
 loot_table_id = "basic_goblin"
-guaranteed_drops = []
 gold_min = 3
-gold_max = 12
+gold_max = 8
+sprite_sheet = ExtResource("2_sprite")

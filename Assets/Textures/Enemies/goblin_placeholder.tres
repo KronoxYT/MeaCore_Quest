@@ -1,0 +1,7 @@
+[gd_resource type="ImageTexture" format=3]
+
+[resource]
+data = SubResource("1")
+
+[sub_resource type="Image" id="1"]
+data = PackedByteArray()

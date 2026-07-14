@@ -5,7 +5,7 @@ var _is_player: bool = false
 var _is_boss: bool = false
 
 func _ready():
-    _is_player = owner.has_node("PlayerInputSync") or owner.has_node("CombatSync")
+    _is_player = owner.has_node("Camera2D") or owner.has_node("PlayerInput")
     if _is_player:
         set_physics_process(false)
         return

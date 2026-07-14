@@ -1,34 +1,19 @@
-[gd_resource type="Resource" script_class="LootTableResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="LootTableResource" format=3]
 
-[ext_resource type="Script" path="res://Resources/Loot/LootTableResource.gd" id="1"]
+[ext_resource type="Script" path="res://Resources/Botin/LootTableResource.gd" id="1_LootTableResource"]
 
 [resource]
-script = ExtResource("1")
+script = ExtResource("1_LootTableResource")
 id = "basic_goblin"
-display_name = "Loot de Goblin Básico"
-entries = [
-{
-"item_id": "goblin_ear",
-"chance": 0.6,
+display_name = "Basic Goblin Loot"
+entries = [{
+"item_id": "gold",
+"chance": 1.0,
+"min_qty": 3,
+"max_qty": 8
+}, {
+"item_id": "cloth",
+"chance": 0.3,
 "min_qty": 1,
 "max_qty": 2
-},
-{
-"item_id": "rusty_dagger",
-"chance": 0.15,
-"min_qty": 1,
-"max_qty": 1
-},
-{
-"item_id": "health_potion_small",
-"chance": 0.1,
-"min_qty": 1,
-"max_qty": 1
-},
-{
-"item_id": "leather_scrap",
-"chance": 0.4,
-"min_qty": 1,
-"max_qty": 3
-}
-]
+}]

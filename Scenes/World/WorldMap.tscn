@@ -22,11 +22,6 @@ format = 2
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=625037075]
 navigation_polygon = SubResource("NavigationPolygon_an7de")
 
-[node name="PlayersContainer" type="Node2D" parent="." unique_id=291727872]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=725643610]
-spawn_path = NodePath("../PlayersContainer")
-
 [node name="PlayerBase" parent="." unique_id=294228741 instance=ExtResource("2")]
 position = Vector2(640, 360)
 

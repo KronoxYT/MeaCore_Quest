@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-var speed: float = 130.0
+var speed: float = 80.0
+const SPRINT_SPEED: float = 130.0
 var is_dead: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -169,7 +170,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("basic_attack"): cast_skill(0)
 	if Input.is_action_just_pressed("cycle_target"): _cycle_target()
 
-	velocity = direction * speed + knockback_velocity
+	var current_speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else speed
+	velocity = direction * current_speed + knockback_velocity
 	move_and_slide()
 
 	# Animation logic
@@ -220,10 +222,15 @@ func _on_target_changed(new_target: Node):
 func _cycle_target():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	var alive = []
+	var player_pos = global_position
 	for e in enemies:
 		if not e.is_dead and is_instance_valid(e):
-			alive.append(e)
-	if alive.size() == 0: return
+			var dist = player_pos.distance_to(e.global_position)
+			if dist <= 500.0:
+				alive.append(e)
+	if alive.size() == 0:
+		GameManager.target = null
+		return
 	if not is_instance_valid(GameManager.target) or GameManager.target == null:
 		GameManager.target = alive[0]
 		return

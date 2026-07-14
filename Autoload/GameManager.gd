@@ -13,28 +13,8 @@ signal game_over()
 signal victory()
 
 
-var auto_connect_to_server: bool = false
-var auto_start_server: bool = false
-
-
 func _ready() -> void:
     process_mode = PROCESS_MODE_ALWAYS
-    _parse_cmd_args()
-
-
-func _parse_cmd_args() -> void:
-    var args = OS.get_cmdline_args()
-    if "--server" in args:
-        auto_start_server = true
-        var NM = get_node("/root/NetworkManager")
-        if NM:
-            NM.start_server(8910, 100)
-            load_level("res://Scenes/World/WorldMap.tscn")
-    elif "--client" in args:
-        auto_connect_to_server = true
-        var NM = get_node("/root/NetworkManager")
-        if NM:
-            NM.connect_to_server("127.0.0.1", 8910)
 
 
 func change_state(new_state: GameState) -> void:

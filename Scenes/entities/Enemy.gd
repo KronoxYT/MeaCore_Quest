@@ -46,6 +46,7 @@ var class_y_offset: int = 0
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var name_label: Label = $NameLabel
+@onready var anim_player: AnimationPlayer = $AnimationPlayer if has_node("AnimationPlayer") else null
 
 func _ready():
     add_to_group("enemy")
@@ -56,7 +57,8 @@ func _ready():
     _pick_new_roam_target()
 
 func setup_monster_stats():
-    sprite.region_enabled = true
+    if not anim_player:
+        sprite.region_enabled = true
     if monster_id == "slime":
         monster_name = "Slime Pegajoso"
         level = 1
@@ -125,6 +127,34 @@ func setup_monster_stats():
         class_y_offset = 256
         attack_range = 45.0
         agro_range = 180.0
+    elif monster_id == "demon":
+        monster_name = "Demonio"
+        level = 4
+        max_hp = 100.0
+        hp = max_hp
+        atk = 18
+        defense = 5
+        speed = 50.0
+        xp_reward = 120
+        gold_reward = 40
+        loot_item = "demon_heart"
+        loot_chance = 0.3
+        attack_range = 30.0
+        agro_range = 150.0
+    elif monster_id == "blood_demon":
+        monster_name = "Demonio de Sangre"
+        level = 5
+        max_hp = 150.0
+        hp = max_hp
+        atk = 22
+        defense = 6
+        speed = 55.0
+        xp_reward = 180
+        gold_reward = 60
+        loot_item = "demon_heart"
+        loot_chance = 0.5
+        attack_range = 32.0
+        agro_range = 160.0
     elif monster_id == "dummy":
         monster_name = "Muñeco de Práctica"
         level = 1
@@ -151,7 +181,9 @@ func setup_monster_stats():
     hp_bar.max_value = max_hp
     hp_bar.value = hp
     
-    if monster_id != "dummy":
+    if anim_player:
+        anim_player.play("Idle")
+    elif monster_id != "dummy":
         update_sprite_rect()
 
 func _physics_process(delta):
@@ -235,10 +267,13 @@ func _process_attack(delta):
         return
     if attack_timer <= 0.0:
         attack_timer = attack_cooldown
-        var attack_dir = (player_node.global_position - global_position).normalized()
-        var tween = create_tween()
-        tween.tween_property(sprite, "offset", attack_dir * 6.0, 0.08)
-        tween.tween_property(sprite, "offset", Vector2.ZERO, 0.08)
+        if anim_player:
+            anim_player.play("Ataque1")
+        else:
+            var attack_dir = (player_node.global_position - global_position).normalized()
+            var tween = create_tween()
+            tween.tween_property(sprite, "offset", attack_dir * 6.0, 0.08)
+            tween.tween_property(sprite, "offset", Vector2.ZERO, 0.08)
         player_node.take_damage(atk)
 
 func _is_in_safe_zone(pos: Vector2) -> bool:
@@ -246,6 +281,12 @@ func _is_in_safe_zone(pos: Vector2) -> bool:
     return pos.x > -160 and pos.x < 480 and pos.y > -160 and pos.y < 480
 
 func _animate_movement(delta):
+    if anim_player:
+        if velocity.length() > 2.0 and anim_player.current_animation != "Caminar":
+            anim_player.play("Caminar")
+        elif velocity.length() <= 2.0 and anim_player.current_animation != "Idle":
+            anim_player.play("Idle")
+        return
     if velocity.length() > 2.0:
         if abs(velocity.x) > abs(velocity.y): current_dir = 3 if velocity.x > 0 else 2
         else: current_dir = 0 if velocity.y > 0 else 1
@@ -274,9 +315,12 @@ func take_damage(amount: int, is_crit: bool = false):
     var num_color = Color(1.0, 0.9, 0.2) if is_crit else Color(1.0, 1.0, 1.0)
     GameManager.show_damage_number.emit(global_position + Vector2(0, -16), str(amount), num_color)
     if current_state == EnemyState.ROAM: current_state = EnemyState.CHASE
-    var tween = create_tween()
-    tween.tween_property(sprite, "self_modulate", Color(1, 0.2, 0.2), 0.08)
-    tween.tween_property(sprite, "self_modulate", Color.WHITE, 0.08)
+    if anim_player:
+        anim_player.play("Herido")
+    else:
+        var tween = create_tween()
+        tween.tween_property(sprite, "self_modulate", Color(1, 0.2, 0.2), 0.08)
+        tween.tween_property(sprite, "self_modulate", Color.WHITE, 0.08)
     SoundManager.play_sfx("hit")
     if hp <= 0: die()
 
@@ -299,19 +343,36 @@ func die():
     if player and player.has_method("_register_combo_hit"):
         player._register_combo_hit()
 
-    var tween = create_tween()
-    tween.tween_property(sprite, "scale", Vector2.ZERO, 0.2)
-    tween.parallel().tween_property(sprite, "rotation", PI * 2, 0.2)
-
     hp_bar.visible = false
     name_label.visible = false
-
     collision_shape.set_deferred("disabled", true)
+
+    if anim_player:
+        anim_player.play("Muerte")
+        if anim_player.animation_finished.is_connected(_on_death_anim_finished):
+            anim_player.animation_finished.disconnect(_on_death_anim_finished)
+        anim_player.animation_finished.connect(_on_death_anim_finished)
+    else:
+        var tween = create_tween()
+        tween.tween_property(sprite, "scale", Vector2.ZERO, 0.2)
+        tween.parallel().tween_property(sprite, "rotation", PI * 2, 0.2)
 
     if GameManager.target == self:
         GameManager.target = null
 
     respawn_timer = respawn_time
+
+func _on_death_anim_finished(anim_name: String) -> void:
+    if anim_name != "Muerte":
+        return
+    anim_player.animation_finished.disconnect(_on_death_anim_finished)
+    var tween = create_tween()
+    tween.tween_interval(0.3)
+    tween.tween_property(sprite, "modulate", Color(1, 1, 1, 0), 0.2)
+    tween.tween_callback(func():
+        sprite.visible = false
+        sprite.modulate = Color.WHITE
+    )
 
 func _process_respawn(delta):
     respawn_timer -= delta
@@ -321,9 +382,14 @@ func _process_respawn(delta):
         hp_bar.value = hp
         hp_bar.visible = true
         name_label.visible = true
+        sprite.visible = true
+        sprite.modulate = Color.WHITE
         global_position = spawn_position
         current_state = EnemyState.ROAM
-        update_sprite_rect()
+        if anim_player:
+            anim_player.play("Idle")
+        else:
+            update_sprite_rect()
         collision_shape.set_deferred("disabled", false)
 
 func _input_event(viewport, event, shape_idx):

@@ -3,6 +3,12 @@ extends CanvasLayer
 
 ## HUD principal del juego con barras de HP, Stamina y información
 
+const HP_BAR_STYLES: Array[String] = [
+    "res://Assets/UI/Icons/Barra de vida.png",
+    "res://Assets/UI/Icons/Barra de vida2.png",
+    "res://Assets/UI/Icons/Barra de Vida3.png",
+]
+
 @onready var hp_bar: ProgressBar = $MarginContainer/VBoxContainer/HPBar
 @onready var hp_label: Label = $MarginContainer/VBoxContainer/HPBar/HPLabel
 @onready var stamina_bar: ProgressBar = $MarginContainer/VBoxContainer/StaminaBar
@@ -15,10 +21,33 @@ var player = null
 var notification_timer: float = 0.0
 
 func _ready():
+    _apply_hp_bar_style()
     player = GameManager.player
     if player:
         _connect_signals()
     _update_all()
+
+static func get_playthrough_count() -> int:
+    var cfg := ConfigFile.new()
+    cfg.load("user://playthrough.cfg")
+    return cfg.get_value("meta", "playthrough_count", 0)
+
+static func increment_playthrough() -> void:
+    var cfg := ConfigFile.new()
+    cfg.load("user://playthrough.cfg")
+    var count = cfg.get_value("meta", "playthrough_count", 0) + 1
+    cfg.set_value("meta", "playthrough_count", count)
+    cfg.save("user://playthrough.cfg")
+
+func _apply_hp_bar_style() -> void:
+    var idx := get_playthrough_count() % HP_BAR_STYLES.size()
+    var path := HP_BAR_STYLES[idx]
+    var tex := load(path) as Texture2D
+    if not tex:
+        return
+    var sbt := StyleBoxTexture.new()
+    sbt.texture = tex
+    hp_bar.add_theme_stylebox_override("fill", sbt)
 
 func _connect_signals() -> void:
     if player.health:

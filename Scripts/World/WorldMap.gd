@@ -7,8 +7,20 @@ class_name WorldMap
 
 
 func _ready() -> void:
+    _ensure_tileset()
     _paint_grass_tiles()
     _generate_navigation_polygon()
+
+
+func _ensure_tileset() -> void:
+    var tilemap := $TileMap as TileMap
+    if not tilemap:
+        return
+    if tilemap.tile_set:
+        return
+    var ts = TileSet.new()
+    ts.tile_size = Vector2i(tile_size, tile_size)
+    tilemap.tile_set = ts
 
 
 func _paint_grass_tiles() -> void:

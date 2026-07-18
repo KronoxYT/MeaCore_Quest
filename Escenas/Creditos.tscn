@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://carsupk88hwib"]
+
+[ext_resource type="Script" uid="uid://1qsgo3gelsgp" path="res://Script/Creditos.gd" id="1_n7avv"]
+[ext_resource type="PackedScene" uid="uid://drh6pum6hldnc" path="res://Escenas/MenuPrincipal.tscn" id="2_l7mwx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gkvhh"]
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vkk3"]
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gpdek"]
+font_color = Color(0.5529412, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1mow"]
+font_color = Color(0.7764706, 0.27058825, 0.14117648, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkrkv"]
+font_color = Color(1, 0.96862745, 0, 1)
+
+[node name="Creditos" type="Control" unique_id=581329880]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n7avv")
+escena_menu = ExtResource("2_l7mwx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1387278058]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.07, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1622728565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=59320451]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Espacio vacio" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=1094049461]
+custom_minimum_size = Vector2(0, 650)
+layout_mode = 2
+
+[node name="DIRECCIÓN Y DESARROLLO" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=546674958]
+layout_mode = 2
+text = "DIRECCIÓN Y DESARROLLO"
+horizontal_alignment = 1
+
+[node name="Director del Proyecto" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=330239842]
+layout_mode = 2
+text = "Director del Proyecto"
+horizontal_alignment = 1
+
+[node name="KronoxYT" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=330791522]
+layout_mode = 2
+text = "KronoxYT"
+label_settings = SubResource("LabelSettings_gkvhh")
+horizontal_alignment = 1
+
+[node name="Programación Principal" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1396963560]
+layout_mode = 2
+text = "Programación Principal"
+horizontal_alignment = 1
+
+[node name="KronoxYT2" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2077679247]
+layout_mode = 2
+text = "KronoxYT"
+label_settings = SubResource("LabelSettings_5vkk3")
+horizontal_alignment = 1
+
+[node name="ARTE Y DISEÑO VISUAL" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=855207721]
+layout_mode = 2
+text = "ARTE Y DISEÑO VISUAL"
+horizontal_alignment = 1
+
+[node name="Interfaz de Usuario (UI)" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1577785147]
+layout_mode = 2
+text = "Interfaz de Usuario"
+horizontal_alignment = 1
+
+[node name="Fantasy UI User Interaface - ToffeeCraft" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1994593403]
+layout_mode = 2
+text = "Fantasy UI User Interaface - ToffeeCraft"
+label_settings = SubResource("LabelSettings_gpdek")
+horizontal_alignment = 1
+
+[node name="Arte de Personajes" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1746705296]
+layout_mode = 2
+text = "Arte de Personajes"
+horizontal_alignment = 1
+
+[node name="Mattz Art" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1967640131]
+layout_mode = 2
+text = "Knight  Sprite - Mattz Art
+Adventurer 2D Top-Down - Mattz Art"
+label_settings = SubResource("LabelSettings_g1mow")
+horizontal_alignment = 1
+
+[node name="Pixel-Banner" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=32986267]
+layout_mode = 2
+text = "Slime - Pixel-Banner"
+horizontal_alignment = 1
+
+[node name="Arte de Iconos" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=814459721]
+layout_mode = 2
+text = "Arte de Iconos"
+horizontal_alignment = 1
+
+[node name="JammyRoger" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=579345970]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+text = "Configuracion - JammyRoger
+Escudo - JammyRoger
+Estrella - JammyRoger
+Gema - JammyRoger
+Martillo - JammyRoger
+Moneda - JammyRoger"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HERRAMIENTAS Y MOTOR" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=849623062]
+layout_mode = 2
+text = "HERRAMIENTAS Y MOTOR"
+horizontal_alignment = 1
+
+[node name="Motor Gráfico" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=57116676]
+layout_mode = 2
+text = "Motor Gráfico"
+horizontal_alignment = 1
+
+[node name="Godot Engine 4_7" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2067978353]
+layout_mode = 2
+text = "Godot Engine 4.7"
+horizontal_alignment = 1
+
+[node name="Modo de Renderizado" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1361203637]
+layout_mode = 2
+text = "Modo de Renderizado"
+horizontal_alignment = 1
+
+[node name="OpenGL - Compatibility" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1146220306]
+layout_mode = 2
+text = "OpenGL - Compatibility"
+horizontal_alignment = 1
+
+[node name="AGRADECIMIENTOS ESPECIALES" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=168390576]
+layout_mode = 2
+text = "AGRADECIMIENTOS ESPECIALES
+A toda la comunidad de jugadores
+Por probar las primeras fases alfa
+¡Gracias por jugar MeaCore Quest!"
+label_settings = SubResource("LabelSettings_dkrkv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Regresar" type="Button" parent="." unique_id=361419504]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 49.0
+grow_vertical = 0
+text = "Regresar"
+
+[connection signal="pressed" from="Regresar" to="." method="_on_regresar_pressed"]

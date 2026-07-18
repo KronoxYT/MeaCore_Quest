@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://cd82vy60sv8l0"]
+
+[ext_resource type="Script" uid="uid://dmjfvdp42ifib" path="res://Script/HUD.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://bne6nmk2odoa5" path="res://Asset/HUD/FreeHorrorUi.png" id="2_gmmqc"]
+[ext_resource type="Texture2D" uid="uid://b7xc7rxbcn6f" path="res://Asset/Iconos/Moneda.png" id="3_den20"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c42j"]
+atlas = ExtResource("2_gmmqc")
+region = Rect2(136, 3, 96, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nth4u"]
+atlas = ExtResource("2_gmmqc")
+region = Rect2(128, 131, 64, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qycel"]
+atlas = ExtResource("2_gmmqc")
+region = Rect2(130, 66, 28, 29)
+
+[sub_resource type="StyleBoxFlat" id="sb_bg"]
+bg_color = Color(0.12, 0.12, 0.12, 0.85)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="sb_vida_fill"]
+bg_color = Color(0.8, 0.1, 0.1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="sb_mana_fill"]
+bg_color = Color(0.1, 0.3, 0.8, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="sb_exp_fill"]
+bg_color = Color(0.1, 0.7, 0.2, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="sb_stamina_fill"]
+bg_color = Color(0.9, 0.6, 0.05, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HUD" type="CanvasLayer" unique_id=110231103]
+script = ExtResource("1_hud")
+
+[node name="FondoBarraDeVida" type="PanelContainer" parent="." unique_id=1794156478]
+offset_left = 88.0
+offset_top = 18.669853
+offset_right = 311.6627
+offset_bottom = 108.53827
+
+[node name="TextureRect" type="TextureRect" parent="FondoBarraDeVida" unique_id=959780832]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4c42j")
+
+[node name="BGPanel" type="PanelContainer" parent="." unique_id=1230343459]
+offset_left = 10.0
+offset_top = 18.669853
+offset_right = 88.0
+offset_bottom = 103.0
+
+[node name="FondoCalavera" type="TextureRect" parent="BGPanel" unique_id=1155871148]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nth4u")
+
+[node name="MainContainer" type="MarginContainer" parent="." unique_id=1222420903]
+offset_left = 10.0
+offset_top = 6.6698456
+offset_right = 300.0
+offset_bottom = 120.40191
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TopRow" type="HBoxContainer" parent="MainContainer" unique_id=736196156]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Calavera" type="Control" parent="MainContainer/TopRow" unique_id=625285359]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CalaveraTexture" type="TextureRect" parent="MainContainer/TopRow/Calavera" unique_id=1609903514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_qycel")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="BarsColumn" type="VBoxContainer" parent="MainContainer/TopRow" unique_id=825622661]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="VidaBar" type="ProgressBar" parent="MainContainer/TopRow/BarsColumn" unique_id=63523992]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("sb_bg")
+theme_override_styles/fill = SubResource("sb_vida_fill")
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="MainContainer/TopRow/BarsColumn" unique_id=1855129221]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("sb_bg")
+theme_override_styles/fill = SubResource("sb_mana_fill")
+show_percentage = false
+
+[node name="EXPBar" type="ProgressBar" parent="MainContainer/TopRow/BarsColumn" unique_id=85356577]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("sb_bg")
+theme_override_styles/fill = SubResource("sb_exp_fill")
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="MainContainer/TopRow/BarsColumn" unique_id=869228021]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("sb_bg")
+theme_override_styles/fill = SubResource("sb_stamina_fill")
+show_percentage = false
+
+[node name="Monedas" type="HBoxContainer" parent="." unique_id=1080577658]
+offset_left = 16.0
+offset_top = 103.0
+offset_right = 80.0
+offset_bottom = 120.0
+theme_override_constants/separation = 4
+
+[node name="MonedaIcon" type="TextureRect" parent="Monedas" unique_id=1438564943]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("3_den20")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MonedaCount" type="Label" parent="Monedas" unique_id=514501176]
+layout_mode = 2
+text = "0"
+vertical_alignment = 1

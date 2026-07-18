@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://drh6pum6hldnc"]
+
+[ext_resource type="Script" uid="uid://5jthpswfwqrt" path="res://Script/MenuPrincipal.gd" id="1_20qv4"]
+[ext_resource type="Texture2D" uid="uid://cs2b64nal55q0" path="res://Asset/HUD/freefantasy.png" id="2_iq5l4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ira17"]
+atlas = ExtResource("2_iq5l4")
+region = Rect2(84, 48, 71, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq5l4"]
+atlas = ExtResource("2_iq5l4")
+region = Rect2(138, 2, 45, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eml0e"]
+atlas = ExtResource("2_iq5l4")
+region = Rect2(138, 2, 45, 29)
+margin = Rect2(0, 2, 0, 0)
+
+[node name="MenuPrincipal" type="Control" unique_id=1158737059]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_20qv4")
+metadata/_edit_horizontal_guides_ = [100.08]
+metadata/_edit_vertical_guides_ = [399.81998]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=721907915]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3647059, 0.27450982, 0.19607843, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=1683982539]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.89645
+offset_top = -260.0995
+offset_right = 260.10352
+offset_bottom = 170.15051
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ira17")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1255861166]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.49600002
+anchor_right = 0.514
+anchor_bottom = 0.49600002
+offset_left = -117.02435
+offset_top = -105.60603
+offset_right = 116.61566
+offset_bottom = 104.92398
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_region = true
+
+[node name="Iniciar Aventura" type="TextureButton" parent="VBoxContainer" unique_id=537087430]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_iq5l4")
+texture_pressed = SubResource("AtlasTexture_eml0e")
+texture_hover = SubResource("AtlasTexture_eml0e")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Iniciar Aventura" type="Label" parent="VBoxContainer/Iniciar Aventura" unique_id=548429549]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Iniciar Aventura"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Configuracion" type="TextureButton" parent="VBoxContainer" unique_id=368000701]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_iq5l4")
+texture_pressed = SubResource("AtlasTexture_eml0e")
+texture_hover = SubResource("AtlasTexture_eml0e")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Configuracion" type="Label" parent="VBoxContainer/Configuracion" unique_id=1327201613]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Configuracion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Salir del Juego" type="TextureButton" parent="VBoxContainer" unique_id=1866265133]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_iq5l4")
+texture_pressed = SubResource("AtlasTexture_eml0e")
+texture_hover = SubResource("AtlasTexture_eml0e")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Salir del Juego" type="Label" parent="VBoxContainer/Salir del Juego" unique_id=585475148]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Salir del Juego"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Iniciar Aventura" to="." method="_on_iniciar_aventura_pressed"]
+[connection signal="pressed" from="VBoxContainer/Configuracion" to="." method="_on_configuracion_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir del Juego" to="." method="_on_salir_del_juego_pressed"]
